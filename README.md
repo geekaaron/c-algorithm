@@ -1,7 +1,7 @@
 
 # C Algorithm
 
-#### Sorting
+## Sorting
 
 + Bubble sort
 
@@ -17,6 +17,20 @@
 
 + Heap sort
 
-#### Link data structure
+## Link data structure
 
-+ Coming soon...
+#### Usage
+
+```
+1. #include "link.h"
+
+2. Write indata function to input data.
+
+3. Write outdata function to output data.
+```
+
+See more in test.c.
+
+## Queue data structure
+
+Commint soon...
