@@ -5,7 +5,7 @@ int create_link(link *l)
 {
 	*l = (link)malloc(sizeof(lnode));
 	if (*l == NULL) return -1;				// -->
-	(*l)->pointer = (*l)->next = NULL;
+	(*l)->data = (*l)->next = NULL;
 	return 0;
 }
 
@@ -26,10 +26,10 @@ int getlen_link(link l)
 	return len;
 }
 
-void list_link(link l, void (*outdata)(const void *pointer))
+void list_link(link l, void (*outdata)(const void *data))
 {
 	for (lnode *p = l->next; p != NULL; p = p->next)
-		outdata(p->pointer);
+		outdata(p->data);
 	printf("\n");
 }
 
@@ -41,16 +41,16 @@ int locate_link(link l, lnode *b)
 	return -1;
 }
 
-int insert_link(link l, int index, int (*indata)(void **pointer))
+int insert_link(link l, int index, int (*indata)(void **data))
 {
 	if (index < 0 || index > getlen_link(l)) return -1;	// -->
 
-	void *pointer = NULL;
-	if (indata(&pointer) == -1) return -1;			// -->
+	void *data = NULL;
+	if (indata(&data) == -1) return -1;			// -->
 
 	lnode *b = (lnode *)malloc(sizeof(lnode));
 	if (b == NULL) return -1;				// -->
-	b->pointer = pointer;
+	b->data = data;
 
 	lnode *q = l;
 	lnode *p = l->next;
@@ -61,11 +61,10 @@ int insert_link(link l, int index, int (*indata)(void **pointer))
 	}
 	q->next = b;
 	b->next = p;
-
 	return 0;
 }
 
-int remove_link(link l, int index)
+int remove_link(link l, int index, lnode *b)
 {
 	if (index < 0 || index > getlen_link(l)) return -1;	// -->
 
@@ -77,8 +76,13 @@ int remove_link(link l, int index)
 		p = p->next;
 	}
 	q->next = p->next;
-	free (p->pointer);
-	free(p);
+
+	if (b == NULL)
+	{
+		free(p->data);
+		free(p);
+	}
+	else b = p;
 
 	return 0;
 }

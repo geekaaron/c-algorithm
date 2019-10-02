@@ -33,4 +33,20 @@ See more in test.c.
 
 ## Queue data structure
 
+```
+1. #include "link.h"
+
+2. Write indata function to input data.
+
+3. Write outdata function to output data.
+```
+
+## Others
+
++ KMP
+
++ Knapsock
+
+## Binary tree data structure
+
 Commint soon...
