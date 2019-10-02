@@ -45,7 +45,7 @@ See more in test.c.
 
 + KMP
 
-+ Knapsock
++ Knapsack
 
 ## Binary tree data structure
 
